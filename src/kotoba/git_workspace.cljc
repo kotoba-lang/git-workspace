@@ -1,6 +1,6 @@
 (ns kotoba.git-workspace
   "Portable repository/forge catalog read-model. Host effects are injected as data."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def sort-keys #{:name :updated-at :issues :pull-requests :work})
 
@@ -36,7 +36,7 @@
     :issues (count (:repo/issues repo))
     :pull-requests (count (:repo/pull-requests repo))
     :work (count (:repo/work-items repo))
-    (str/lower-case (:repo/name repo))))
+    (str/lower (:repo/name repo))))
 
 (defn sort-repos
   ([repos sort-key] (sort-repos repos sort-key :asc))
